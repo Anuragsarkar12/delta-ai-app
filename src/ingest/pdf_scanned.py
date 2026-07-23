@@ -3,9 +3,14 @@ import uuid
 import numpy as np
 import pdfplumber
 import easyocr
+import os
+import ssl
 from typing import Optional
 from src.ingest.base import BaseParser
 from src.canonical.model import CanonicalDocument, CanonicalPage, DocumentElement, BoundingBox
+
+# Bypass macOS SSL certificate verification for downloading EasyOCR models
+ssl._create_default_https_context = ssl._create_unverified_context
 
 logger = logging.getLogger(__name__)
 
