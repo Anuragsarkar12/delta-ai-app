@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Delta & Chat</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for Upload & Delta Report -->
+        <aside class="sidebar glass-panel">
+            <header>
+                <h1>Delta<span class="gradient-text">Engine</span></h1>
+                <p class="subtitle">Compute revisions instantly.</p>
+            </header>
+            
+            <div class="upload-section">
+                <div class="file-drop" id="base-drop">
+                    <label>Base Document (PDF)</label>
+                    <input type="file" id="base-file" accept=".pdf">
+                </div>
+                <div class="file-drop" id="revised-drop">
+                    <label>Revised Document (PDF)</label>
+                    <input type="file" id="revised-file" accept=".pdf">
+                </div>
+                <button id="compute-btn" class="primary-btn">Compute Delta</button>
+                <div class="loader" id="loader" style="display: none;"></div>
+            </div>
+
+            <div class="delta-report-section" id="report-section" style="display: none;">
+                <h3>Delta Summary</h3>
+                <div class="stats-grid">
+                    <div class="stat-card added">
+                        <span class="value" id="stat-added">0</span>
+                        <span class="label">Added</span>
+                    </div>
+                    <div class="stat-card removed">
+                        <span class="value" id="stat-removed">0</span>
+                        <span class="label">Removed</span>
+                    </div>
+                    <div class="stat-card modified">
+                        <span class="value" id="stat-modified">0</span>
+                        <span class="label">Modified</span>
+                    </div>
+                </div>
+                
+                <div class="changes-list" id="changes-list">
+                    <!-- Javascript will populate changes here -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area glass-panel">
+            <div class="chat-header">
+                <h2>Grounded Chat</h2>
+                <div class="status-indicator">
+                    <div class="pulse"></div>
+                    <span>Ready</span>
+                </div>
+            </div>
+            
+            <div class="chat-history" id="chat-history">
+                <div class="message system-msg">
+                    <div class="msg-bubble">
+                        Welcome. Upload two documents on the left to compute the delta. Once the index is built, you can ask me questions about what changed.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask about the document revisions..." disabled>
+                <button id="send-btn" class="icon-btn" disabled>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/app.js"></script>
+</body>
+</html>
