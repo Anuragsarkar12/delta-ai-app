@@ -17,7 +17,7 @@ class LLMRefinedDelta(BaseModel):
     confidence: ConfidenceLevel
 
 class DeltaEngine:
-    def __init__(self, model_name: str = "groq/llama-3.1-70b-versatile"):
+    def __init__(self, model_name: str = "groq/mixtral-8x7b-32768"):
         """
         Initialize the DeltaEngine. 
         Defaults to Groq's Llama 3 70B for blazing fast classification.

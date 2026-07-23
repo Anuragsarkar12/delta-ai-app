@@ -13,7 +13,7 @@ class ChatAnswer(BaseModel):
     citations: List[str] = Field(description="A list of citations supporting the answer. Format: '[Source Name, Page X]'")
 
 class ChatBot:
-    def __init__(self, index: DocumentIndex, model_name: str = "groq/llama-3.1-70b-versatile"):
+    def __init__(self, index: DocumentIndex, model_name: str = "groq/mixtral-8x7b-32768"):
         self.index = index
         self.model_name = model_name
         
