@@ -9,7 +9,7 @@ pytest==8.2.0
 python-dotenv==1.0.1
 chromadb==0.5.0
 rank-bm25==0.2.2
-openinference-instrumentation-litellm==0.1.2
+openinference-instrumentation-litellm
 fastapi==0.111.0
 uvicorn==0.29.0
 python-multipart==0.0.9
