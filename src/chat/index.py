@@ -5,6 +5,7 @@ from src.canonical.model import CanonicalDocument
 from src.delta.model import DeltaReport
 from rank_bm25 import BM25Okapi
 import string
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 logger = logging.getLogger(__name__)
 
@@ -34,18 +35,25 @@ class DocumentIndex:
         metadatas = []
         ids = []
         
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=2000,
+            chunk_overlap=200
+        )
+        
         for page in doc.pages:
             page_text = "\n".join([elem.content for elem in page.elements if elem.content])
             if not page_text.strip():
                 continue
                 
-            documents.append(page_text)
-            metadatas.append({
-                "source": "document",
-                "pid": doc.pid,
-                "page_number": page.page_number
-            })
-            ids.append(f"{doc.pid}_page_{page.page_number}")
+            chunks = text_splitter.split_text(page_text)
+            for i, chunk in enumerate(chunks):
+                documents.append(chunk)
+                metadatas.append({
+                    "source": "document",
+                    "pid": doc.pid,
+                    "page_number": page.page_number
+                })
+                ids.append(f"{doc.pid}_page_{page.page_number}_chunk_{i}")
             
         if documents:
             self.collection.upsert(documents=documents, metadatas=metadatas, ids=ids)
