@@ -2,7 +2,7 @@ pdfplumber==0.11.0
 easyocr==1.7.1
 arize-phoenix==4.4.1
 pydantic==2.7.1
-litellm==1.37.15
+litellm==1.40.0
 instructor==1.2.9
 python-json-logger==2.0.7
 pytest==8.2.0
